@@ -112,7 +112,7 @@ export default function UploadPage() {
                 name="description"
                 label="내용"
                 labelPlacement="outside"
-                placeholder="예: 가족과 여행 갔던 날이에요."
+                placeholder="예: 장소, 이름(우재와 이모) 여행 갔던 날이에요."
                 className="min-h-[6rem]"
                 radius="sm"
               />
@@ -120,7 +120,6 @@ export default function UploadPage() {
 
             {/* 이미지 업로드 */}
             <div className="flex flex-col gap-2">
-             
               <ImageUpload onFileChange={handleFileChange} selectedFile={file} />
             </div>
           </CardBody>

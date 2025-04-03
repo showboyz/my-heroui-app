@@ -48,7 +48,7 @@ export default function LoginPage() {
             radius="sm"
             className="w-full"
             startContent={<Icon icon="mdi:google" className="h-5 w-5" />}
-            onClick={handleGoogleLogin}
+            onPress={handleGoogleLogin}
           >
             구글 계정으로 로그인
           </Button>
