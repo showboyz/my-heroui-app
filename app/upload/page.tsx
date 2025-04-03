@@ -1,8 +1,6 @@
 "use client";
 
-import { Card, CardBody, CardHeader } from "@heroui/card";
-import { Button } from "@heroui/button";
-import { Input, Textarea } from "@heroui/input";
+import { Card, CardBody, CardHeader, Form, Input, Button } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import ImageUpload from "@/components/image-upload";
 import { useState } from "react";
@@ -12,7 +10,6 @@ import { useRouter } from "next/navigation";
 export default function UploadPage() {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
-  const [description, setDescription] = useState("");
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -22,8 +19,10 @@ export default function UploadPage() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const description = formData.get("description") as string;
 
     if (!file || !description) {
       alert("모든 항목을 입력해주세요.");
@@ -86,7 +85,7 @@ export default function UploadPage() {
 
       setMessage("✅ 업로드 및 이야기 생성 요청 완료!");
       setFile(null);
-      setDescription("");
+      e.currentTarget.reset();
     } catch (error) {
       console.error("🔥 업로드 실패:", error);
       setMessage("❌ 업로드 중 오류가 발생했습니다.");
@@ -97,7 +96,7 @@ export default function UploadPage() {
 
   return (
     <div className="h-screen flex flex-col items-center p-4">
-      <form onSubmit={handleSubmit} className="w-full max-w-md">
+      <Form onSubmit={handleSubmit} className="w-full max-w-md">
         <Card className="w-full">
           <CardHeader className="flex flex-col gap-1">
             <h1 className="text-2xl font-bold">✨ 소중한 순간을 함께 나누어요! ✨</h1>
@@ -108,19 +107,20 @@ export default function UploadPage() {
           <CardBody className="flex flex-col gap-4">
             {/* 텍스트 입력 */}
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium">내용</label>
-              <Textarea
+              <Input
+                isRequired
+                name="description"
+                label="내용"
+                labelPlacement="outside"
                 placeholder="예: 가족과 여행 갔던 날이에요."
                 className="min-h-[6rem]"
                 radius="sm"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
 
             {/* 이미지 업로드 */}
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium">이미지</label>
+             
               <ImageUpload onFileChange={handleFileChange} selectedFile={file} />
             </div>
           </CardBody>
@@ -144,7 +144,7 @@ export default function UploadPage() {
             <p className="mt-2 text-center text-sm text-default-500">{message}</p>
           )}
         </div>
-      </form>
+      </Form>
     </div>
   );
 }
