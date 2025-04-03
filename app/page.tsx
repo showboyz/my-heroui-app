@@ -23,11 +23,6 @@ export default function HomePage() {
     checkUser();
   }, [router]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/login");
-  };
-
   return (
     <div className="h-screen flex flex-col items-center p-4">
       <Card className="w-full max-w-md">
@@ -39,27 +34,19 @@ export default function HomePage() {
             이미지와 함께 새로운 게시물을 작성해보세요.
           </p>
         </CardHeader>
-        <div className="flex flex-col gap-4 p-4">
-          <Button
-            className="w-full"
-            color="primary"
-            radius="sm"
-            startContent={<Icon icon="mdi:upload" className="h-5 w-5" />}
-            onPress={() => router.push("/upload")}
-          >
-            업로드하기
-          </Button>
-          <Button
-            className="w-full"
-            color="danger"
-            radius="sm"
-            startContent={<Icon icon="mdi:logout" className="h-5 w-5" />}
-            onPress={handleLogout}
-          >
-            로그아웃
-          </Button>
-        </div>
       </Card>
+
+      {/* 플로팅 업로드 버튼 */}
+      <Button
+        className="fixed bottom-8 right-8 shadow-lg"
+        color="primary"
+        isIconOnly
+        radius="full"
+        size="lg"
+        onPress={() => router.push("/upload")}
+      >
+        <Icon icon="mdi:plus" className="h-6 w-6" />
+      </Button>
     </div>
   );
 }

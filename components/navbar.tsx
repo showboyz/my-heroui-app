@@ -8,11 +8,24 @@ import {
 } from "@heroui/navbar";
 import { Button } from "@heroui/button";
 import NextLink from "next/link";
+import { useRouter } from "next/navigation";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
+import { supabase } from "@/lib/supabase";
 
 export const Navbar = () => {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      router.push("/login");
+    } catch (error) {
+      console.error("로그아웃 중 오류 발생:", error);
+    }
+  };
+
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -32,12 +45,10 @@ export const Navbar = () => {
           <ThemeSwitch />
           <Button
             color="danger"
-            variant="flat"
+            radius="sm"
             size="sm"
-            onPress={() => {
-              // 로그아웃 로직 추가
-              console.log("로그아웃");
-            }}
+            variant="flat"
+            onPress={handleLogout}
           >
             로그아웃
           </Button>
@@ -47,14 +58,12 @@ export const Navbar = () => {
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
         <Button
-          color="danger"
-          variant="flat"
-          size="sm"
           className="ml-2"
-          onPress={() => {
-            // 로그아웃 로직 추가
-            console.log("로그아웃");
-          }}
+          color="danger"
+          radius="sm"
+          size="sm"
+          variant="flat"
+          onPress={handleLogout}
         >
           로그아웃
         </Button>
