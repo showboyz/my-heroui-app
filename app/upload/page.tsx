@@ -93,7 +93,7 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center p-4">
+    <div className="flex flex-col items-center p-4">
       <Form onSubmit={handleSubmit} className="w-full max-w-md">
         <Card className="w-full">
           <CardHeader className="flex flex-col gap-1">

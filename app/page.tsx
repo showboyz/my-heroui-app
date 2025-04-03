@@ -24,7 +24,7 @@ export default function HomePage() {
   }, [router]);
 
   return (
-    <div className="h-screen flex flex-col items-center p-4">
+    <div className="flex flex-col items-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold">
