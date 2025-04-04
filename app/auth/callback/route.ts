@@ -11,7 +11,6 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  // 현재 도메인을 사용하여 리다이렉트
-  const redirectUrl = new URL("/", requestUrl.origin);
-  return NextResponse.redirect(redirectUrl);
+  // Vercel URL로 하드코딩된 리다이렉트
+  return NextResponse.redirect("https://my-heroui-app-kappa.vercel.app");
 } 

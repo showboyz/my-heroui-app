@@ -16,7 +16,7 @@ export default function LoginPage() {
       } = await supabase.auth.getUser();
 
       if (user) {
-        router.push("/");
+        router.push("https://my-heroui-app-kappa.vercel.app");
       }
     };
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: "https://my-heroui-app-kappa.vercel.app/auth/callback",
       },
     });
 
@@ -37,7 +37,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center p-4">
+    <div className="h-screen flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold">
