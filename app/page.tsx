@@ -28,7 +28,7 @@ export default function HomePage() {
       <Card className="w-full max-w-md">
         <CardHeader className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold">
-            ✨ 소중한 순간을 함께 나누어요! ✨
+            ✨소중한 순간을 함께 나누어요✨
           </h1>
           <p className="text-sm text-default-500">
             이미지와 함께 새로운 게시물을 작성해보세요.

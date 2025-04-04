@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { Card, CardBody, CardHeader, Button } from "@heroui/react";
 import { supabase } from "@/lib/supabase";
+import {Image} from "@heroui/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -41,11 +42,10 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold">
-            ✨ 소중한 순간을 함께 나누어요! ✨
+            ✨소중한 순간을 함께 나누어요✨
           </h1>
-          <p className="text-sm text-default-500">
-            구글 계정으로 로그인하여 시작해보세요.
-          </p>
+          <Image src="https://raw.githubusercontent.com/showboyz/showboyz.github.io/7f0aecac80b95d0d61eba0d36266f6e38a3da603/undraw_through-the-park_xcqx.svg" alt="login" width={200} height={200} />
+          
         </CardHeader>
         <CardBody>
           <Button
