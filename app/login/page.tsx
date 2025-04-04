@@ -44,7 +44,7 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold">
             ✨소중한 순간을 함께 나누어요✨
           </h1>
-          <Image src="https://raw.githubusercontent.com/showboyz/showboyz.github.io/7f0aecac80b95d0d61eba0d36266f6e38a3da603/undraw_through-the-park_xcqx.svg" alt="login" width={200} height={200} />
+          <Image src="https://raw.githubusercontent.com/showboyz/showboyz.github.io/7f0aecac80b95d0d61eba0d36266f6e38a3da603/undraw_through-the-park_xcqx.svg" alt="login" width={250} height={250} />
           
         </CardHeader>
         <CardBody>
