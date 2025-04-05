@@ -1,0 +1,43 @@
+"use client";
+
+import { Card, CardHeader, CardBody, CardFooter, Chip } from "@heroui/react";
+import { Image } from "@heroui/image";
+import Link from "next/link";
+import { Icon } from "@iconify/react";
+
+export const FeedItem = ({item}: {item: any}) => {
+
+  return (
+    <div className="p-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Link href={`/detail/${item.id}`} className="block">
+                <Card>
+                    <CardBody>
+                        <Image 
+                        src={item.image_url} 
+                        alt="feed image" 
+                        className="w-full h-full object-cover"
+                         />
+                         <Chip className="absolute top-2 right-2"
+                         color="primary"
+                         variant="flat"
+                         >{item.category || 'uncategorized'}</Chip>
+                         <div>
+                            <div className="p-4 space-y-2">
+                                <h3 className="font-semibold">{item.title || 'untitled'}</h3>
+                                <p className="text-sm text-gray-500 truncate">{item.description || 'undiscription'} </p> 
+                                <div className="flex items-center gap-2 text-default-500">
+                                    <Icon icon="lucide:clock" className="h-4 w-4" />
+                                    <span className="text-sm">{item.duration || ''}</span>
+                                    <span className="text-sm">{item.created_at || ''}</span>
+                                </div>
+                            </div>
+                         </div>
+                    </CardBody>
+                </Card>
+            </Link>
+        </div>
+    </div>
+        
+  );
+};
