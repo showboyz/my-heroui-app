@@ -29,12 +29,12 @@ export const FeedItem = ({item}: {item: any}) => {
                                 <div className="flex items-center gap-2 text-default-500">
                                     <Icon icon="lucide:clock" className="h-4 w-4" />
                                     <span className="text-sm">{item.duration || ''}</span>
-                                    <span className="text-sm">{new Date(item.created_at).toLocaleDateString("en-US", {
+                                </div>
+                                <span className="text-sm">{new Date(item.created_at).toLocaleDateString("en-US", {
                                         year: "numeric",
                                         month: "long",
                                         day: "numeric",
                                         }) || ''}</span>
-                                </div>
                             </div>
                          </div>
                     </CardBody>
