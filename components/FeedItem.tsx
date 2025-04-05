@@ -8,8 +8,8 @@ import { Icon } from "@iconify/react";
 export const FeedItem = ({item}: {item: any}) => {
 
   return (
-    <div className="p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="p-0">
+        <div className="">
             <Link href={`/detail/${item.id}`} className="block">
                 <Card>
                     <CardBody>

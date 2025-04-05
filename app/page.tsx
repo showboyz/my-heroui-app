@@ -51,7 +51,7 @@ export default function HomePage() {
   if (loading) return <p>로딩 중...</p>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-8 gap-4">
           <Icon icon="mdi:image-off" className="h-12 w-12 text-default-400" />
