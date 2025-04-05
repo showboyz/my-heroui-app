@@ -7,10 +7,13 @@ import { Card, CardHeader, Button } from "@heroui/react";
 import { supabase } from "@/lib/supabase";
 import { Image } from "@heroui/image";
 import { FeedItem } from "@/components/FeedItem";
+import { Skeleton } from "@heroui/skeleton";
+
 export default function HomePage() {
   const router = useRouter();
   const [items, setItems] = useState<any[]>([]);
   const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -39,19 +42,32 @@ export default function HomePage() {
         setItems(data);
         
       }
+      setLoading(false);
     };
 
     fetchData();
   }, [router]);
 
+  if (loading) return <p>로딩 중...</p>;
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {items.map((item) => (
-        <FeedItem
-          key={item.id}
-          item={item}
-        />
-      ))}
+      {items.length === 0 ? (
+        <div className="flex flex-col items-center justify-center mt-8 gap-4">
+          <Icon icon="mdi:image-off" className="h-12 w-12 text-default-400" />
+          <p className="text-default-400 text-center">
+            아직 등록된 게시물이 없습니다.<br />
+            첫 번째 게시물을 작성해보세요!
+          </p>
+        </div>
+      ) : (
+        items.map((item) => (
+          <FeedItem
+            key={item.id}
+            item={item}
+          />
+        ))
+      )}
       
 
       {/* 플로팅 업로드 버튼 */}
