@@ -21,6 +21,7 @@ export default function UploadPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget; // ✅ 여기서 저장
     const formData = new FormData(e.currentTarget);
     const description = formData.get("description") as string;
 
@@ -83,7 +84,7 @@ export default function UploadPage() {
 
       setMessage("✅ 업로드 및 이야기 생성 요청 완료!");
       setFile(null);
-      e.currentTarget.reset();
+      form.reset(); // ✅ 여기에선 안전하게 사용  
     } catch (error) {
       console.error("🔥 업로드 실패:", error);
       setMessage("❌ 업로드 중 오류가 발생했습니다.");
