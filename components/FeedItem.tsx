@@ -12,7 +12,7 @@ export const FeedItem = ({item}: {item: any}) => {
             <Link href={`/detail/${item.id}`} className="block">
             <Card>
                 <CardBody>
-                    <div className="relative w-full h-60 overflow-hidden rounded-xl">
+                    <div className="relative w-full h-120 overflow-hidden rounded-xl">
                     <Image
                         src={item.image_url}
                         alt="feed image"

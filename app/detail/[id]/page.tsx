@@ -31,6 +31,8 @@ interface PhotoUpload {
   user_id: string;
   image_url: string;
   description: string;
+  title: string;
+  content: string;
   status: string;
 }
 
@@ -143,8 +145,12 @@ export default function PhotoDetailPage() {
 
           <div className="p-6 space-y-4">
             <div className="space-y-2">
-              <h1 className="text-2xl font-bold">추억의 순간</h1>
-              <p className="text-default-500">{photo.description}</p>
+              <h1 className="text-2xl font-bold">{photo.title}</h1>
+              <p className="text-default-500">{new Date(photo.created_at).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                        }) || ''}</p>
             </div>
 
             <div className="space-y-4">
@@ -187,6 +193,14 @@ export default function PhotoDetailPage() {
                 value={progress}
                 className="w-full"
               />
+            </div>
+            <div className="space-y-2">
+                <h2 className="text-lg font-semibold">
+                    Episode Description
+                </h2>
+                <p className="text-default-500">
+                    {photo.content}
+                </p>
             </div>
           </div>
         </CardBody>
