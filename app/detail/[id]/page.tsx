@@ -33,6 +33,7 @@ interface PhotoUpload {
   description: string;
   title: string;
   content: string;
+  mp3_url: string;
   status: string;
 }
 
@@ -120,7 +121,7 @@ export default function PhotoDetailPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-2">
+    <div className="max-w-4xl mx-auto space-y-0">
       <Card className="w-full">
         <CardBody className="p-0">
           <div className="relative h-64 md:h-96">
@@ -134,7 +135,7 @@ export default function PhotoDetailPage() {
           {/* 오디오 재생기 */}
           <audio
             ref={audioRef}
-            src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+            src={photo.mp3_url}
             onTimeUpdate={handleTimeUpdate}
             onLoadedMetadata={() => {
               if (audioRef.current) {
