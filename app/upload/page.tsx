@@ -67,7 +67,7 @@ export default function UploadPage() {
       const insertedRow = data[0];
 
       // 4. Webhook 호출
-      const webhookUrl = "https://ca51-124-52-43-121.ngrok-free.app/webhook-test/af1daccf-2f22-452b-8226-b415867f1b56";
+      const webhookUrl = "https://ca51-124-52-43-121.ngrok-free.app/webhook/af1daccf-2f22-452b-8226-b415867f1b56";
 
       await fetch(webhookUrl, {
         method: "POST",
