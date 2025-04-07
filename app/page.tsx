@@ -72,7 +72,7 @@ export default function HomePage() {
 
       {/* 플로팅 업로드 버튼 */}
       <Button
-        className="fixed bottom-8 right-8 shadow-lg"
+        className="fixed bottom-8 right-8 shadow-lg z-20"
         color="primary"
         isIconOnly
         radius="full"
