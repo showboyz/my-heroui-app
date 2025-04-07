@@ -2,10 +2,9 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import { Card, CardBody, Button, Progress, Chip } from "@heroui/react";
+import { Card, CardBody, Button, Progress } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { supabase } from "@/lib/supabase";
-import { Image } from "@heroui/image";
 
 // 추천 음악 데이터
 const recommendedSongs = [
@@ -35,7 +34,6 @@ interface PhotoUpload {
   title: string;
   content: string;
   status: string;
-  category?: string;
 }
 
 export default function PhotoDetailPage() {
@@ -122,42 +120,40 @@ export default function PhotoDetailPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-4xl mx-auto space-y-6 px-6 pb-6">
       <Card className="w-full">
-        <CardBody>
-          <div className="relative w-full h-[400px] overflow-hidden rounded-xl">
-            <Image
+        <CardBody className="p-0">
+          <div className="relative h-64 md:h-96">
+            <img
               src={photo.image_url}
               alt="Photo Detail"
               className="w-full h-full object-cover"
             />
-            <Chip
-              className="absolute top-2 right-2 z-10"
-              color="primary"
-              variant="flat"
-            >
-              {photo.category || 'uncategorized'}
-            </Chip>
           </div>
 
-          <div className="p-4 space-y-4">
+          {/* 오디오 재생기 */}
+          <audio
+            ref={audioRef}
+            src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+            onTimeUpdate={handleTimeUpdate}
+            onLoadedMetadata={() => {
+              if (audioRef.current) {
+                setDuration(audioRef.current.duration);
+              }
+            }}
+          />
+
+          <div className="p-6 space-y-4">
             <div className="space-y-2">
-              <h1 className="text-2xl font-bold">{photo.title || 'untitled'}</h1>
-              <div className="flex items-center gap-2 text-gray-500">
-                <Icon icon="lucide:calendar" className="h-4 w-4" />
-                <span className="text-sm">
-                  {new Date(photo.created_at).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  }) || ''}
-                </span>
-              </div>
-              <p className="text-default-500">{photo.description || 'No description'}</p>
+              <h1 className="text-2xl font-bold">{photo.title}</h1>
+              <p className="text-default-500">{new Date(photo.created_at).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                        }) || ''}</p>
             </div>
 
-            {/* 오디오 플레이어 */}
-            <div className="space-y-4 mt-6">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-default-500">
                   {formatTime(currentTime)} / {formatTime(duration)}
@@ -198,30 +194,31 @@ export default function PhotoDetailPage() {
                 className="w-full"
               />
             </div>
-
-            {/* 콘텐츠 */}
-            <div className="space-y-2 mt-6">
-              <h2 className="text-lg font-semibold">내용</h2>
-              <p className="text-default-500">
-                {photo.content || 'No content'}
-              </p>
+            <div className="space-y-2">
+                <h2 className="text-lg font-semibold">
+                    Episode Description
+                </h2>
+                <p className="text-default-500">
+                    {photo.content}
+                </p>
             </div>
           </div>
         </CardBody>
       </Card>
 
       {/* 🧠 AI 추천 곡 섹션 */}
-      <div className="space-y-4 mt-6">
-        <h2 className="text-lg font-semibold">
+      <div className="space-y-4">
+        <h2 className="text-lg font-semibold px-6 text-start">
           🎶 추천 음악
         </h2>
-        <div className="space-y-3">
+        <div className="space-y-3 flex flex-col items-center">
           {recommendedSongs.map((song, idx) => (
-            <Card key={idx} className="w-full">
+            <Card key={idx} className="w-full mx-auto">
               <CardBody className="space-y-2">
                 <h3 className="font-semibold">{song.title}</h3>
                 <p className="text-sm text-default-500">{song.description}</p>
 
+                {/* ▶️ Toggle 버튼 */}
                 <Button
                   variant="solid"
                   color="primary"
@@ -230,6 +227,7 @@ export default function PhotoDetailPage() {
                   {visibleIndex === idx ? "영상 숨기기" : "YouTube에서 보기"}
                 </Button>
 
+                {/* 🎬 iframe 영상 토글 */}
                 {visibleIndex === idx && (
                   <div
                     className="mt-4 w-full relative"
