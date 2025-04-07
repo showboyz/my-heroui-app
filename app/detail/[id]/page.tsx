@@ -114,13 +114,13 @@ export default function PhotoDetailPage() {
   if (!photo) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p className="text-default-500">로딩 중...</p>
+        <p className="text-default-500">Now Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6 px-6 pb-6">
+    <div className="max-w-4xl mx-auto space-y-2">
       <Card className="w-full">
         <CardBody className="p-0">
           <div className="relative h-64 md:h-96">
