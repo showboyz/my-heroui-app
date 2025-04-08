@@ -196,7 +196,7 @@ export default function PhotoDetailPage() {
               />
             </div>
             <div className="space-y-2">
-                <h2 className="text-lg font-semibold">
+                <h2 className="text-lg font-semibold leading-normal sm:leading-relaxed">
                     Episode Description
                 </h2>
                 <p className="text-default-500">
@@ -208,7 +208,7 @@ export default function PhotoDetailPage() {
       </Card>
 
       {/* 🧠 AI 추천 곡 섹션 */}
-      <div className="space-y-4">
+      <div className="space-y-4 mt-4">
         <h2 className="text-lg font-semibold px-6 text-start">
           🎶 추천 음악
         </h2>

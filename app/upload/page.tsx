@@ -99,10 +99,11 @@ export default function UploadPage() {
         <Card className="w-full">
           <CardHeader className="flex flex-col gap-1">
             <h1 className="text-2xl font-bold">
-              ✨ 소중한 순간을 함께 나누어요! ✨
+              ✨소중한 순간을 함께 나누어요✨
             </h1>
-            <p className="text-sm text-default-500">
-              이미지와 함께 새로운 게시물을 작성해보세요.
+            <p className="text-sm text-default-500 text-center">
+            사진 속 인물, 장소, 상황, 느낌을 자유롭게 적어주세요.<br/>
+            정보가 많을수록 더 풍성하고 생동감 있는 이야기를 만들어드립니다.
             </p>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
@@ -116,7 +117,7 @@ export default function UploadPage() {
                 name="description"
                 required
                 className="w-full min-h-[6rem] p-2 border rounded-sm"
-                placeholder="예: 장소, 이름(우재와 이모) 여행 갔던 날이에요."
+                placeholder="예: 시우가 유치원 발표회에 나간 날, 무대에서 씩씩하게 노래하고 끝나고 엄마랑 포옹했어요."
               />
             </div>
 
