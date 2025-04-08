@@ -208,7 +208,7 @@ export default function PhotoDetailPage() {
       </Card>
 
       {/* 🧠 AI 추천 곡 섹션 */}
-      <div className="space-y-4 mt-4">
+      <div className="space-y-4 mt-6">
         <h2 className="text-lg font-semibold px-6 text-start">
           🎶 추천 음악
         </h2>
